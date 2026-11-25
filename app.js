@@ -19,11 +19,20 @@ const SUBMIT_TYPES = {
   map: 'map location'
 };
 const PAGES = ['home', 'easter-eggs', 'outfits', 'vehicles', 'map'];
-const MAP_W = 1500, MAP_H = 2000;
+const MAP_TILE_URL = 'https://cdn.jsdelivr.net/gh/rolux/gtadb.org@main/maps/tiles/6/day/{z}/{z},{y},{x}.jpg';
+const MAP_RANGES = {
+  0: [[0, 0], [2, 3]],
+  1: [[1, 1], [5, 6]],
+  2: [[2, 2], [10, 12]],
+  3: [[4, 4], [20, 25]],
+  4: [[8, 8], [41, 51]],
+  5: [[17, 17], [83, 103]],
+  6: [[34, 34], [167, 206]]
+};
 const PAGE_SIZE = 10;
 const data = {}, layers = {}, markers = {};
 const state = { letter: '', q: '', limit: PAGE_SIZE };
-let map, focusLayer, revealObserver, mapSvgImg;
+let map, focusLayer, revealObserver;
 
 const AVATARS = {
   xgarbett: 'https://pbs.twimg.com/profile_images/1450888241033453581/m8C8Y9_J_normal.jpg',
@@ -389,50 +398,29 @@ function route() {
 }
 
 function setDefaultMapView() {
-  map.setView([MAP_H - 1100, 900], 0);
+  map.setView([-500, -2500], 1);
 }
 
-function createTiledSvgLayer() {
-  if (!mapSvgImg) {
-    mapSvgImg = new Image();
-    mapSvgImg.src = 'assets/map.svg';
-  }
-
-  const SvgGrid = L.GridLayer.extend({
-    createTile(coords) {
-      const tile = document.createElement('canvas');
-      const tileSize = this.getTileSize();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      tile.width = tileSize.x * dpr;
-      tile.height = tileSize.y * dpr;
-
-      const render = () => {
-        const ctx = tile.getContext('2d');
-        const scale = Math.pow(2, coords.z);
-        const drawX = -coords.x * tileSize.x;
-        const drawY = -MAP_H * scale - coords.y * tileSize.y;
-        const drawW = MAP_W * scale;
-        const drawH = MAP_H * scale;
-
-        if (drawX < tileSize.x && drawY < tileSize.y && drawX + drawW > 0 && drawY + drawH > 0) {
-          ctx.scale(dpr, dpr);
-          ctx.drawImage(mapSvgImg, drawX, drawY, drawW, drawH);
-        }
-      };
-
-      if (mapSvgImg.complete && mapSvgImg.naturalWidth > 0) {
-        render();
-      } else {
-        mapSvgImg.addEventListener('load', render, { once: true });
+function createLeonidaTileLayer() {
+  const LeonidaTiles = L.TileLayer.extend({
+    createTile(coords, done) {
+      const range = MAP_RANGES[coords.z];
+      if (!range || coords.x < range[0][0] || coords.x > range[1][0] || coords.y < range[0][1] || coords.y > range[1][1]) {
+        const empty = document.createElement('div');
+        empty.className = 'leaflet-tile';
+        setTimeout(() => done(null, empty), 0);
+        return empty;
       }
-      return tile;
+      return L.TileLayer.prototype.createTile.call(this, coords, done);
     }
   });
 
-  return new SvgGrid({
-    tileSize: 512,
-    minZoom: -1,
-    maxZoom: 3,
+  return new LeonidaTiles(MAP_TILE_URL, {
+    tileSize: 256,
+    minZoom: 0,
+    maxZoom: 6,
+    maxNativeZoom: 6,
+    noWrap: true,
     keepBuffer: 2,
     updateWhenZooming: false
   });
@@ -440,18 +428,21 @@ function createTiledSvgLayer() {
 
 function initMap(focus) {
   if (!map) {
+    const leonidaCRS = L.extend({}, L.CRS.Simple, {
+      transformation: new L.Transformation(1 / 32, 512, -1 / 32, 512)
+    });
     map = L.map('map', {
-      crs: L.CRS.Simple,
-      minZoom: -1,
-      maxZoom: 3,
-      zoomSnap: .5,
-      zoomDelta: .5,
+      crs: leonidaCRS,
+      minZoom: 0,
+      maxZoom: 6,
+      zoomSnap: 1,
+      zoomDelta: 1,
       wheelPxPerZoomLevel: 100,
       preferCanvas: true,
       attributionControl: false
     });
-    createTiledSvgLayer().addTo(map);
-    map.setMaxBounds([[-200, -200], [MAP_H + 200, MAP_W + 200]]);
+    createLeonidaTileLayer().addTo(map);
+    map.setMaxBounds([[-14000, -14000], [14000, 10000]]);
     focusLayer = L.layerGroup().addTo(map);
     Object.entries(CATS).forEach(([k, c]) => {
       const catMarkers = [];
@@ -460,7 +451,7 @@ function initMap(focus) {
         const pts = getPoints(i.pos);
         const itemMarkers = pts.map((pt, idx) => {
           const stepTitle = pt.label ? `<b>${i.title}</b><br><em>${pt.label}</em>` : (pts.length > 1 ? `<b>${i.title} (#${idx + 1}/${pts.length})</b>` : `<b>${i.title}</b>`);
-          const m = L.marker([MAP_H - pt.coord[1], pt.coord[0]], {
+          const m = L.marker([pt.coord[1], pt.coord[0]], {
             icon: L.divIcon({ className: 'pin', html: `<i style="background:${c.color}"></i>`, iconSize: [18, 18] })
           }).bindPopup(`${stepTitle}<br>${i.description || ''}<br><a href="${link}">Open ${c.label}</a>`);
           catMarkers.push(m);
@@ -505,11 +496,11 @@ function initMap(focus) {
     ms.forEach(m => focusLayer.addLayer(m));
 
     if (ms.length === 1) {
-      map.setView(ms[0].getLatLng(), 1);
+      map.setView(ms[0].getLatLng(), 4);
       ms[0].openPopup();
     } else {
       const groupBounds = L.latLngBounds(ms.map(m => m.getLatLng()));
-      map.fitBounds(groupBounds, { padding: [50, 50], maxZoom: 1 });
+      map.fitBounds(groupBounds, { padding: [50, 50], maxZoom: 4 });
       ms[0].openPopup();
     }
   } else {
