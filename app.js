@@ -23,7 +23,7 @@ const MAP_W = 1500, MAP_H = 2000;
 const PAGE_SIZE = 10;
 const data = {}, layers = {}, markers = {};
 const state = { letter: '', q: '', limit: PAGE_SIZE };
-let map, focusLayer, revealObserver;
+let map, focusLayer, revealObserver, mapSvgImg;
 
 const AVATARS = {
   xgarbett: 'https://pbs.twimg.com/profile_images/1450888241033453581/m8C8Y9_J_normal.jpg',
@@ -392,6 +392,52 @@ function setDefaultMapView() {
   map.setView([MAP_H - 1100, 900], 0);
 }
 
+function createTiledSvgLayer() {
+  if (!mapSvgImg) {
+    mapSvgImg = new Image();
+    mapSvgImg.src = 'assets/map.svg';
+  }
+
+  const SvgGrid = L.GridLayer.extend({
+    createTile(coords) {
+      const tile = document.createElement('canvas');
+      const tileSize = this.getTileSize();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      tile.width = tileSize.x * dpr;
+      tile.height = tileSize.y * dpr;
+
+      const render = () => {
+        const ctx = tile.getContext('2d');
+        const scale = Math.pow(2, coords.z);
+        const drawX = -coords.x * tileSize.x;
+        const drawY = -MAP_H * scale - coords.y * tileSize.y;
+        const drawW = MAP_W * scale;
+        const drawH = MAP_H * scale;
+
+        if (drawX < tileSize.x && drawY < tileSize.y && drawX + drawW > 0 && drawY + drawH > 0) {
+          ctx.scale(dpr, dpr);
+          ctx.drawImage(mapSvgImg, drawX, drawY, drawW, drawH);
+        }
+      };
+
+      if (mapSvgImg.complete && mapSvgImg.naturalWidth > 0) {
+        render();
+      } else {
+        mapSvgImg.addEventListener('load', render, { once: true });
+      }
+      return tile;
+    }
+  });
+
+  return new SvgGrid({
+    tileSize: 512,
+    minZoom: -1,
+    maxZoom: 3,
+    keepBuffer: 2,
+    updateWhenZooming: false
+  });
+}
+
 function initMap(focus) {
   if (!map) {
     map = L.map('map', {
@@ -404,8 +450,7 @@ function initMap(focus) {
       preferCanvas: true,
       attributionControl: false
     });
-    const bounds = [[0, 0], [MAP_H, MAP_W]];
-    L.imageOverlay('assets/map.svg', bounds).addTo(map);
+    createTiledSvgLayer().addTo(map);
     map.setMaxBounds([[-200, -200], [MAP_H + 200, MAP_W + 200]]);
     focusLayer = L.layerGroup().addTo(map);
     Object.entries(CATS).forEach(([k, c]) => {

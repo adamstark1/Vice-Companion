@@ -44,6 +44,7 @@ h2{margin:0 0 2rem;font-size:clamp(2.4rem,7vw,4.5rem);line-height:1}
 #filters .show-all-pins{opacity:1;border-color:var(--pink);color:var(--pink)}
 #filters .show-all-pins:hover{background:rgba(255,79,163,.15)}
 #map{position:relative;z-index:1;height:calc(100svh - 11rem);min-height:26rem;border:1px solid var(--line);border-radius:4px;background:#0d0618}
+.leaflet-tile{will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .pin i{display:block;width:18px;height:18px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 4px rgba(255,255,255,.15)}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:#fff;border-radius:6px}
 .leaflet-popup-content a{color:var(--pink);font-weight:600}
