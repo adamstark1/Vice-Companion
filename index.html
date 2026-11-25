@@ -20,7 +20,10 @@ if (location.hostname === 'vice-companion.netlify.app') {
 <body>
 <header class="bar">
   <a class="brand" href="#/home">Vice Companion</a>
-  <nav>
+  <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="main-nav">
     <a data-p="easter-eggs" href="#/easter-eggs">Easter Eggs</a>
     <a data-p="outfits" href="#/outfits">Outfits</a>
     <a data-p="vehicles" href="#/vehicles">Vehicles</a>

@@ -91,6 +91,27 @@ function resolveAvatar(h, tweetId = '') {
     .finally(() => { delete pendingAvatars[key]; });
 }
 
+function initMobileMenu() {
+  const btn = $('#menu-toggle');
+  const nav = $('#main-nav');
+  if (!btn || !nav) return;
+  const closeMenu = () => {
+    btn.classList.remove('open');
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+  btn.onclick = e => {
+    e.stopPropagation();
+    const open = btn.classList.toggle('open');
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.bar')) closeMenu();
+  });
+}
+initMobileMenu();
+
 const failed = [];
 
 Promise.all(Object.keys(CATS).map(k =>
@@ -142,7 +163,7 @@ const meta = i => {
   if (h && !i.avatar && !AVATARS[key]) resolveAvatar(h, tweetId);
   const primary = i.avatar || AVATARS[key] || (h ? `https://unavatar.io/x/${h}` : '');
   const fallback = h ? `https://unavatar.io/twitter/${h}` : '';
-  const by = i.addedBy ? `<span>· added by <b class="by">${i.addedBy}</b></span>` : '';
+  const by = i.addedBy ? `<span class="added-by">· added by <b class="by">${i.addedBy}</b></span>` : '';
   return `<div class="meta">${avatar(primary, fallback, i.author, key)}<b>${i.author || 'Unknown'}</b>${i.date ? `<span>· ${ago(i.date)}</span>` : ''}${by}</div>`;
 };
 
@@ -348,8 +369,18 @@ function card(k, i, extraClass = '', delay = 0) {
 function route() {
   const [p, arg] = location.hash.slice(2).split('/');
   const page = PAGES.includes(p) ? p : 'home';
-  document.querySelectorAll('.page').forEach(s => s.hidden = s.id !== 'p-' + page);
+  document.querySelectorAll('.page').forEach(s => {
+    const active = s.id === 'p-' + page;
+    if (active && s.hidden) {
+      s.style.animation = 'none';
+      s.offsetHeight;
+      s.style.animation = '';
+    }
+    s.hidden = !active;
+  });
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.p === page));
+  const btn = $('#menu-toggle'), nav = $('#main-nav');
+  if (btn && nav) { btn.classList.remove('open'); nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
   document.title = PAGE_TITLES[page] ? `${PAGE_TITLES[page]} | Vice Companion` : 'Vice Companion';
   updateSubmitLink(page);
   if (page === 'home') initScrollAnimations();
@@ -363,7 +394,16 @@ function setDefaultMapView() {
 
 function initMap(focus) {
   if (!map) {
-    map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 3, zoomSnap: .25, zoomDelta: .5, attributionControl: false });
+    map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -1,
+      maxZoom: 3,
+      zoomSnap: .5,
+      zoomDelta: .5,
+      wheelPxPerZoomLevel: 100,
+      preferCanvas: true,
+      attributionControl: false
+    });
     const bounds = [[0, 0], [MAP_H, MAP_W]];
     L.imageOverlay('assets/map.svg', bounds).addTo(map);
     map.setMaxBounds([[-200, -200], [MAP_H + 200, MAP_W + 200]]);
