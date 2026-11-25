@@ -5,6 +5,12 @@ const CATS = {
   outfits:       { label: 'Outfits',     color: '#19e3d1' },
   vehicles:      { label: 'Vehicles',    color: '#ff9a3d' }
 };
+const PAGE_TITLES = {
+  'easter-eggs': 'Easter Eggs',
+  outfits: 'Outfits',
+  vehicles: 'Vehicles',
+  map: 'Map'
+};
 const SUBMIT_TYPES = {
   home: 'unspecified',
   'easter-eggs': 'easter egg',
@@ -344,6 +350,7 @@ function route() {
   const page = PAGES.includes(p) ? p : 'home';
   document.querySelectorAll('.page').forEach(s => s.hidden = s.id !== 'p-' + page);
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.p === page));
+  document.title = PAGE_TITLES[page] ? `${PAGE_TITLES[page]} | Vice Companion` : 'Vice Companion';
   updateSubmitLink(page);
   if (page === 'home') initScrollAnimations();
   if (page === 'easter-eggs') showThread(arg);
