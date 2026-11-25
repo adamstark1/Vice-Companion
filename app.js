@@ -1,8 +1,16 @@
 const $ = s => document.querySelector(s);
+const REPO_URL = 'https://github.com/adamstark1/Vice-Companion';
 const CATS = {
   'easter-eggs': { label: 'Easter Eggs', color: '#ff4fa3' },
   outfits:       { label: 'Outfits',     color: '#19e3d1' },
   vehicles:      { label: 'Vehicles',    color: '#ff9a3d' }
+};
+const SUBMIT_TYPES = {
+  home: 'unspecified',
+  'easter-eggs': 'easter egg',
+  outfits: 'outfit',
+  vehicles: 'vehicle',
+  map: 'map location'
 };
 const PAGES = ['home', 'easter-eggs', 'outfits', 'vehicles', 'map'];
 const MAP_W = 1500, MAP_H = 2000;
@@ -41,7 +49,7 @@ const AVATARS = {
   chumbucketdrama: 'https://pbs.twimg.com/profile_images/2107276649469501440/YZjIjAyg_normal.jpg',
   pilasto1: 'https://pbs.twimg.com/profile_images/2096651530497634307/A895oknL_normal.jpg',
   snowembrace: 'https://pbs.twimg.com/profile_images/1619997946681901056/fGakcfUg_normal.jpg',
-  culturecrave: 'https://pbs.twimg.com/profile_images/1852843670455918593/s4KQ-54f_normal.jpg',
+  culturecrave: 'https://pbs.twimg.com/profile_images/1852343670455918593/s4KQ-54f_normal.jpg',
   memeioyt: 'https://pbs.twimg.com/profile_images/1952330685114707968/lmX4sgMI_normal.jpg',
   paramountgames: 'https://pbs.twimg.com/profile_images/2062903238836494336/afsAEJWN_normal.jpg',
   gtalphaintel: 'https://pbs.twimg.com/profile_images/2113647990380404736/qNDk_P8D_normal.jpg'
@@ -286,8 +294,39 @@ function showThread(id) {
     <div class="acts-row">
       ${i.source ? `<a class="btn" href="${i.source}" target="_blank" rel="noopener noreferrer">Original post ↗</a>` : ''}
       ${pts.length ? `<a class="btn" href="#/map/easter-eggs:${i.id}">Show on map</a>` : ''}
+      <a class="btn star-btn" href="${REPO_URL}" target="_blank" rel="noopener noreferrer">★ Star Repo</a>
     </div>`;
   if (i.embed) loadTweets();
+}
+
+function updateSubmitLink(page) {
+  const btn = $('#submit-link');
+  if (!btn) return;
+  const type = SUBMIT_TYPES[page] || 'unspecified';
+  const title = `[submit: ${type}] Title here`;
+  const body = [
+    `### Category`,
+    type,
+    ``,
+    `### Title`,
+    `Enter the name of the ${type === 'unspecified' ? 'discovery (Easter Egg / Outfit / Vehicle)' : type}`,
+    ``,
+    `### Short Description`,
+    `1-2 sentence summary shown on the card`,
+    ``,
+    `### Full Guide / Content`,
+    `Detailed steps, location in Leonida, and any rewards (Weapon, Clothing, Money, Boost)`,
+    ``,
+    `### Source / Video Link (X / Twitter)`,
+    `https://x.com/...`,
+    ``,
+    `### Map Coordinates or In-Game Area (Optional)`,
+    `e.g. Key Lento, Vice Beach, Port Gellhorn or [x, y]`,
+    ``,
+    `### Your Name / Handle (Added By)`,
+    ``
+  ].join('\n');
+  btn.href = `${REPO_URL}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 }
 
 function card(k, i, extraClass = '', delay = 0) {
@@ -305,6 +344,7 @@ function route() {
   const page = PAGES.includes(p) ? p : 'home';
   document.querySelectorAll('.page').forEach(s => s.hidden = s.id !== 'p-' + page);
   document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.p === page));
+  updateSubmitLink(page);
   if (page === 'home') initScrollAnimations();
   if (page === 'easter-eggs') showThread(arg);
   if (page === 'map') initMap(arg); else scrollTo(0, 0);
