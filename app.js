@@ -758,6 +758,19 @@ function initMap(focus) {
     createLeonidaTileLayer().addTo(map);
     map.setMaxBounds([[-22000, -22000], [24000, 18000]]);
     focusLayer = L.layerGroup().addTo(map);
+    map.on('click', e => {
+      if (!e.originalEvent || !e.originalEvent.shiftKey) return;
+      const x = Math.round(e.latlng.lng);
+      const y = Math.round(e.latlng.lat);
+      const coordText = `[${x}, ${y}]`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(coordText).catch(() => {});
+      }
+      L.popup(popupOpts)
+        .setLatLng(e.latlng)
+        .setContent(`<div class="pop-card" style="--c:${FOUND_COLOR}"><div class="pop-tags"><span class="pop-tag pop-tag-found"><i>Copied to clipboard</i></span></div><h4 class="pop-title">${coordText}</h4></div>`)
+        .openOn(map);
+    });
     Object.entries(CATS).forEach(([k, c]) => {
       const catMarkers = [];
       data[k].filter(hasPos).forEach(i => {
