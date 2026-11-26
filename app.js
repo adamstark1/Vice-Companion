@@ -80,7 +80,10 @@ const AVATARS = {
   culturecrave: 'https://pbs.twimg.com/profile_images/1852343670455918593/s4KQ-54f_normal.jpg',
   memeioyt: 'https://pbs.twimg.com/profile_images/1952330685114707968/lmX4sgMI_normal.jpg',
   paramountgames: 'https://pbs.twimg.com/profile_images/2062903238836494336/afsAEJWN_normal.jpg',
-  gtalphaintel: 'https://pbs.twimg.com/profile_images/2113647990380404736/qNDk_P8D_normal.jpg'
+  gtalphaintel: 'https://pbs.twimg.com/profile_images/2113647990380404736/qNDk_P8D_normal.jpg',
+  gta6newshub: 'https://pbs.twimg.com/profile_images/2069761723142123520/Gr9qZgEw_normal.jpg',
+  caspahz: 'https://pbs.twimg.com/profile_images/2124135317158707200/A3OE9M38_normal.jpg',
+  pi5cesmoon: 'https://pbs.twimg.com/profile_images/2125695690781143040/uOsn9xcK_normal.jpg'
 };
 const pendingAvatars = {};
 
