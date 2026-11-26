@@ -657,7 +657,14 @@ function buildPinIcon(k, id, stepNum = 0) {
   const isFound = k === 'easter-eggs' && foundSet.has(id);
   const color = isFound ? FOUND_COLOR : CATS[k].color;
   const cls = isFound ? 'pin pin-found' : 'pin';
-  return L.divIcon({ className: cls, html: `<i style="background:${color}"></i>`, iconSize: [18, 18] });
+  const numBadge = stepNum > 0 ? `<b class="pin-num" style="--c:${color}">${stepNum}</b>` : '';
+  return L.divIcon({
+    className: cls,
+    html: `<i style="background:${color}"></i>${numBadge}`,
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    popupAnchor: [0, -11]
+  });
 }
 
 function buildPinPopup(k, i, pt, idx, totalPts, isOverview = false) {
