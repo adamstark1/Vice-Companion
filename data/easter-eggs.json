@@ -188,7 +188,7 @@
     "embed": "https://x.com/xGarbett/status/2123763394687697013",
     "addedBy": "AdamStark",
     "pos": [
-      -649, 
+      -649,
       671
     ]
   },
@@ -377,7 +377,7 @@
     "embed": "https://x.com/xGarbett/status/2124286214568075630",
     "addedBy": "AdamStark",
     "pos": [
-      -6332, 
+      -6332,
       4372
     ]
   },
@@ -1297,6 +1297,32 @@
     "pos": [
       85,
       4115
+    ]
+  },
+  {
+    "id": "cherry-popper-ice-cream-truck",
+    "title": "Cherry Popper Ice Cream Truck & Secret T-Shirt",
+    "description": "Visit the Cherry Popper Ice Cream Company shop in Grassrivers during the daytime to steal the classic Vice City ice cream van and break into the back for an exclusive Cherry Popper T-shirt.",
+    "content": [
+      "Along the highway corridor in eastern Grassrivers, Mariana County—at the intersection of Sweetbay Road and Seabell Avenue just northwest of Hamlet—stands the flagship parlor of The Cherry Popper Ice Cream Company, topped with a giant white ice-cream-scoop dome and cherry roof. Parked right in the front lot during daytime hours is the Brute Cherry Popper Boxville, a direct throwback to the infamous Cherry Popper asset and Mr. Whoopee ice cream truck from 2002's Grand Theft Auto: Vice City.",
+      "Before driving off, walk behind the parked delivery van and hold Triangle (PS5) / Y (Xbox) on the locked rear doors to kick them open. Stepping inside the back cargo compartment and interacting with the red cooler box on the floor (Square / X to Take) immediately unlocks the exclusive White & Red Cherry Popper T-Shirt in your wardrobe under Tops > T-Shirts > Merch.",
+      "In addition to the secret clothing reward, the Brute Cherry Popper Boxville itself counts as one of Leonida's collectible Standout Vehicles (Topper 1/6) and retains the suggestive twin-scoop-and-cone roof topper from the original Vice City. Although the van spawns locked and alarmed—requiring you to smash the driver's window and hotwire the ignition—it has no pre-installed tracker, allowing you to drive it straight to Moses' shop to register and store it permanently."
+    ],
+    "author": "DETONATEDcom",
+    "date": "2026-11-26",
+    "tags": [
+      "Grassrivers",
+      "Vice City",
+      "Reference",
+      "Clothing",
+      "Vehicle"
+    ],
+    "source": "https://x.com/DETONATEDcom/status/2126072809726046325",
+    "embed": "https://x.com/DETONATEDcom/status/2126072809726046325",
+    "addedBy": "AdamStark",
+    "pos": [
+      -3996,
+      -2424
     ]
   }
 ]

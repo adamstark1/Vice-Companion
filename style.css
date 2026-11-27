@@ -104,16 +104,24 @@ footer p{margin:.9rem 0 0}
 .btn{padding:.6rem 1.2rem;border:1px solid var(--line);border-radius:99px;font-size:.9rem;font-weight:600;background:none;color:#fff;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
 .btn:hover{border-color:var(--pink);color:var(--pink)}
 @keyframes foundPop{0%{transform:scale(.82)}55%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes foundUnpop{0%{transform:scale(1)}45%{transform:scale(.82)}100%{transform:scale(1)}}
 .found-toggle{display:inline-flex;align-items:center;gap:.55rem;user-select:none}
 .found-toggle input{position:absolute;opacity:0;pointer-events:none}
-.found-box{display:inline-flex;align-items:center;justify-content:center;width:1.15rem;height:1.15rem;border:1.5px solid rgba(255,255,255,.4);border-radius:3px;line-height:0;transition:background .22s cubic-bezier(.22,1,.36,1),border-color .22s ease,transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s ease}
-.found-box svg{width:.76rem;height:.76rem;display:block;overflow:visible;fill:none;stroke:#09050f;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:14;stroke-dashoffset:14;opacity:0;transform:scale(.6);transition:stroke-dashoffset .26s cubic-bezier(.22,1,.36,1) .04s,opacity .15s ease,transform .24s cubic-bezier(.34,1.56,.64,1)}
+.found-box{display:inline-flex;align-items:center;justify-content:center;width:1.15rem;height:1.15rem;border:1.5px solid rgba(255,255,255,.4);border-radius:3px;line-height:0;transition:background .24s cubic-bezier(.22,1,.36,1),border-color .24s ease,transform .24s cubic-bezier(.22,1,.36,1),box-shadow .24s ease}
+.found-box svg{width:.76rem;height:.76rem;display:block;overflow:visible;fill:none;stroke:#09050f;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:14;stroke-dashoffset:14;opacity:0;transform:scale(.6);transition:stroke-dashoffset .25s cubic-bezier(.22,1,.36,1),opacity .2s ease,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.found-text{position:relative;display:inline-flex;align-items:center;overflow:hidden;vertical-align:middle;transition:width .28s cubic-bezier(.22,1,.36,1)}
+.found-text>span{white-space:nowrap;transition:transform .28s cubic-bezier(.22,1,.36,1),opacity .22s ease,filter .22s ease}
+.found-toggle:not(.on) .ft-mark{position:relative;opacity:1;transform:translateY(0);filter:blur(0)}
+.found-toggle:not(.on) .ft-done{position:absolute;left:0;top:0;opacity:0;transform:translateY(75%);filter:blur(2px);pointer-events:none}
+.found-toggle.on .ft-mark{position:absolute;left:0;top:0;opacity:0;transform:translateY(-75%);filter:blur(2px);pointer-events:none}
+.found-toggle.on .ft-done{position:relative;opacity:1;transform:translateY(0);filter:blur(0)}
 .found-toggle:hover{border-color:var(--green);color:var(--green)}
 .found-toggle:hover .found-box{border-color:var(--green)}
 .found-toggle.on{border-color:var(--green);background:rgba(37,244,154,.12);color:var(--green)}
 .found-toggle.on .found-box{background:var(--green);border-color:var(--green);box-shadow:0 0 12px rgba(37,244,154,.45);animation:foundPop .34s cubic-bezier(.34,1.56,.64,1)}
+.found-toggle.unchecking .found-box{animation:foundUnpop .3s cubic-bezier(.22,1,.36,1)}
 .found-toggle.on .found-box svg{stroke-dashoffset:0;opacity:1;transform:scale(1)}
-.more-wrap{max-width:52rem;margin-top:1.25rem;display:flex;justify-content:center}
+.more-wrap{max-width:52rem;margin-top:1.25rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
 #profile-box .more-wrap{max-width:none}
 .more-btn{padding:.75rem 2rem;background:var(--panel);border:1px solid var(--line);border-radius:2px;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1rem;letter-spacing:.06em;text-transform:uppercase}
 .more-btn:hover{background:#1b0d2b;border-color:var(--pink);color:#fff}
@@ -177,7 +185,7 @@ footer p{margin:.9rem 0 0}
 .hero-anim{animation:heroIn .75s cubic-bezier(.22,1,.36,1) var(--d,0s) both}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.22,1,.36,1) var(--d,0s),transform .6s cubic-bezier(.22,1,.36,1) var(--d,0s),border-color .2s,background .2s}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.hero-anim,.reveal,.page,.thread,.found-toggle.on .found-box,.found-box svg{animation:none;opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.hero-anim,.reveal,.page,.thread,.found-toggle.on .found-box,.found-toggle.unchecking .found-box,.found-box svg,.found-text,.found-text>span{animation:none;opacity:1;transform:none;transition:none}}
 @media (max-width:640px){
   .bar{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid var(--line)}
   .menu-toggle{display:block}

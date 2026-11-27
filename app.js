@@ -511,6 +511,8 @@ function renderProfile() {
     .filter(i => foundSet.has(i.id))
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   const visibleFound = foundItems.slice(0, state.profLimit);
+  const canShowMore = foundItems.length > visibleFound.length;
+  const canShowLess = visibleFound.length > PROF_INIT_SIZE;
   const totalEE = allEE.length;
   const foundCount = foundItems.length;
   const pct = totalEE ? Math.round((foundCount / totalEE) * 100) : 0;
@@ -544,6 +546,10 @@ function renderProfile() {
         </button>
       </div>`;
 
+  const profBtns = (canShowMore || canShowLess)
+    ? `<div class="more-wrap">${canShowMore ? `<button class="btn more-btn" id="more-prof" type="button">Show more</button>` : ''}${canShowLess ? `<button class="btn more-btn" id="less-prof" type="button">Show less</button>` : ''}</div>`
+    : '';
+
   box.innerHTML = `
     <h2>Profile</h2>
     ${userHtml}
@@ -561,7 +567,7 @@ function renderProfile() {
       <h2>Found Easter Eggs (${foundCount})</h2>
       <a href="#/easter-eggs">All Easter Eggs →</a>
     </div>
-    ${visibleFound.length ? `<div class="posts recent-posts">${visibleFound.map(i => post(i)).join('')}</div>${foundItems.length > visibleFound.length ? `<div class="more-wrap"><button class="btn more-btn" id="more-prof" type="button">Show more</button></div>` : ''}` : '<p class="empty">You have not marked any Easter Eggs as found yet. Open any Easter Egg and check "Mark as Found" to track your progress.</p>'}
+    ${visibleFound.length ? `<div class="posts recent-posts">${visibleFound.map(i => post(i)).join('')}</div>${profBtns}` : '<p class="empty">You have not marked any Easter Eggs as found yet. Open any Easter Egg and check "Mark as Found" to track your progress.</p>'}
   `;
 
   const inBtn = $('#auth-in-btn');
@@ -572,6 +578,13 @@ function renderProfile() {
   if (moreProf) {
     moreProf.onclick = () => {
       state.profLimit += PAGE_SIZE;
+      renderProfile();
+    };
+  }
+  const lessProf = $('#less-prof');
+  if (lessProf) {
+    lessProf.onclick = () => {
+      state.profLimit = PROF_INIT_SIZE;
       renderProfile();
     };
   }
@@ -615,7 +628,7 @@ function showThread(id) {
       <label class="btn found-toggle ${isFound ? 'on' : ''}" id="found-label">
         <input type="checkbox" id="found-cb" ${isFound ? 'checked' : ''}>
         <span class="found-box"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.3 6.2L5 8.9 9.8 3.3"/></svg></span>
-        <span class="found-text" id="found-text">${isFound ? 'Found' : 'Mark as Found'}</span>
+        <span class="found-text" id="found-text"><span class="ft-mark">Mark as Found</span><span class="ft-done">Found</span></span>
       </label>
       ${i.source ? `<a class="btn" href="${i.source}" target="_blank" rel="noopener noreferrer">Original post ↗</a>` : ''}
       ${pts.length ? `<a class="btn" href="#/map/easter-eggs:${i.id}">${mapBtnLabel}</a>` : ''}
@@ -623,12 +636,29 @@ function showThread(id) {
     </div>`;
   const cb = $('#found-cb');
   if (cb) {
+    let widthTimer = null;
     cb.onchange = () => {
       const checked = cb.checked;
       const lbl = $('#found-label');
       const txt = $('#found-text');
-      if (lbl) lbl.classList.toggle('on', checked);
-      if (txt) txt.textContent = checked ? 'Found' : 'Mark as Found';
+      if (txt) {
+        const startW = txt.offsetWidth;
+        const nextSpan = txt.querySelector(checked ? '.ft-done' : '.ft-mark');
+        const endW = nextSpan ? nextSpan.offsetWidth : startW;
+        txt.style.width = `${startW}px`;
+        txt.offsetWidth;
+        txt.style.width = `${endW}px`;
+        clearTimeout(widthTimer);
+        widthTimer = setTimeout(() => { txt.style.width = ''; }, 300);
+      }
+      if (lbl) {
+        lbl.classList.remove('unchecking');
+        if (!checked) {
+          lbl.offsetWidth;
+          lbl.classList.add('unchecking');
+        }
+        lbl.classList.toggle('on', checked);
+      }
       toggleFound(i.id, checked);
       const tBox = $('#thread-tags');
       if (tBox) tBox.innerHTML = tags(i);
