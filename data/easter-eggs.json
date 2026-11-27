@@ -1102,15 +1102,15 @@
       "To unlock the password prompt options on the laptop, inspect three clues around the apartment: (1) the framed dog memorial photo on the hallway side table ('Muffins'); (2) the notepad drawing of a dog wearing a crown on the bedroom vanity ('Queen'); and (3) the back of that same notepad ('Class of '15 reunion' -> '15'). Logging in with Muffins -> Queen -> 15 lets you snoop through Vanessa's Peekhole DMs—including a message where she accidentally pasted a raw AI prompt ('[Write a flirty reply to a sub on Peekhole...]')—and open the WhatUp app to read a text from 'Unknown' revealing keypad code 92665 for a lock-up next to Auntie's Place in La Perle.",
       "Head northwest to Del Rio Boulevard in southern La Perle (across the street from Twa Ponya Tattoo and right behind Aline's Thrift Store) and look for a concrete garage door decorated with a painted pink bow above the keypad. Entering 92665 permanently unlocks the 1-car Del Rio Boulevard Garage along with Vanessa's Growler—a baby-pink Pfister Growler sports car sporting a custom Leonida vanity license plate that reads 'A55 GRL'."
     ],
-    "author": "GTA6NewsHub",
-    "date": "2026-11-22",
+    "author": "SicklyTheNinJa",
+    "date": "2026-11-21",
     "tags": [
       "Vice City",
       "Vehicle",
       "Reference"
     ],
-    "source": "https://x.com/GTA6NewsHub/status/2124614370907082959",
-    "embed": "https://x.com/GTA6NewsHub/status/2124614370907082959",
+    "source": "https://x.com/SicklyTheNinJa/status/2124169716734320804",
+    "embed": "https://x.com/SicklyTheNinJa/status/2124169716734320804",
     "addedBy": "AdamStark",
     "pos": [
       [
@@ -1119,8 +1119,8 @@
         "Step 1: Bayside Apartments (Unit 201) — Inspect 3 dog clues & unlock Vanessa's laptop (Muffins -> Queen -> 15)"
       ],
       [
-        -1005,
-        1395,
+        -978,
+        1378,
         "Step 2: Del Rio Boulevard Garage (La Perle) — Enter code 92665 to unlock garage & Vanessa's 'A55 GRL' Pfister Growler"
       ]
     ]
@@ -1199,8 +1199,33 @@
     "embed": "https://x.com/pi5cesmoon/status/2125584108822945984",
     "addedBy": "AdamStark",
     "pos": [
-      -1293,
-      441
+      -1311,
+      444
+    ]
+  },
+  {
+    "id": "lucia-topless-glitch-npc-reactions",
+    "title": "Lucia Topless Glitch & Cut NPC Reactions",
+    "description": "Use an exploit at Bargain World in Port Gellhorn to trigger hidden NPC voice lines, phone cameras, and protective fights from Jason.",
+    "content": [
+      "Although Grand Theft Auto VI offers no legitimate menu option to remove all of Lucia’s upper clothing in free roam, Rockstar Games still programmed full AI states, animations, and voiced dialogue for public nudity. When walking down Vice Beach or through the city with the glitch active, pedestrians visibly do double-takes, make shocked or flirty remarks, and pull out their smartphones to record or snap photos—leading the community to conclude that a topless or nudist toggle was either cut late in development or given dedicated developer failsafe reactions.",
+      "To trigger the glitch in free roam starting in Chapter 2, head to the Bargain World thrift store in southern Port Gellhorn and buy any long denim jacket (such as the Distressed Trucker Jacket). In the changing room, equip the jacket under Jackets > Denim, switch the wear style to Style 3 (closed), and press Triangle (PS5) / Y (Xbox) on Remove Tank Top so nothing is worn underneath. Back out to Saved Outfits, save/copy this outfit (Triangle / Y), and store it in your vehicle’s trunk (Square / X).",
+      "Switch into any different outfit (such as a one-piece dress), step outside the store, and equip a Bulletproof Vest via your loadout wheel (L1 -> R1 -> Body Armor, purchased from the counter at any Gun & Pawn shop). Walk to your car’s trunk (L1 -> R1 -> Swap Outfit) and swap back to the saved denim jacket outfit so the vest overrides the jacket, leaving only the armor on Lucia’s upper body. Run back into the store’s wardrobe, change your shoes to any other pair, and save the outfit once more.",
+      "Exit into the open world and destroy your body armor—either by dropping a frag grenade nearby or taking gunfire from police—and the vest will break without reloading an underlying shirt. Beyond random beachgoers snapping photos, walking down Vice Beach holding hands with Jason causes him to angrily confront and fight male NPCs who hit on Lucia, and even story NPCs like Port Gellhorn car fence Moses Watkins have dedicated voice lines asking why she isn’t wearing clothes."
+    ],
+    "author": "Cranefomo",
+    "date": "2026-11-26",
+    "tags": [
+      "Port Gellhorn",
+      "Vice Beach",
+      "Clothing"
+    ],
+    "source": "https://x.com/Cranefomo/status/2126033168276787555",
+    "embed": "https://x.com/Cranefomo/status/2126033168276787555",
+    "addedBy": "AdamStark",
+    "pos": [
+      -6356,
+      2777
     ]
   }
 ]

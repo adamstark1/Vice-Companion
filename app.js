@@ -83,7 +83,8 @@ const AVATARS = {
   gtalphaintel: 'https://pbs.twimg.com/profile_images/2113647990380404736/qNDk_P8D_normal.jpg',
   gta6newshub: 'https://pbs.twimg.com/profile_images/2069761723142123520/Gr9qZgEw_normal.jpg',
   caspahz: 'https://pbs.twimg.com/profile_images/2124135317158707200/A3OE9M38_normal.jpg',
-  pi5cesmoon: 'https://pbs.twimg.com/profile_images/2125695690781143040/uOsn9xcK_normal.jpg'
+  pi5cesmoon: 'https://pbs.twimg.com/profile_images/2125695690781143040/uOsn9xcK_normal.jpg',
+  cranefomo: 'https://pbs.twimg.com/profile_images/2066898165609971712/8U75tZ8r_normal.jpg'
 };
 const pendingAvatars = {};
 
