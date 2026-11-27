@@ -757,7 +757,7 @@ function buildPinIcon(k, id, stepNum = 0) {
 function buildPinPopup(k, i, pt, idx, totalPts, isOverview = false) {
   const c = CATS[k];
   const link = k === 'easter-eggs' ? `#/${k}/${i.id}` : `#/${k}`;
-  const isFound = k === 'easter-eggs' && foundSet.has(id);
+  const isFound = k === 'easter-eggs' && foundSet.has(i.id);
   const accent = isFound ? FOUND_COLOR : c.color;
   const foundTag = isFound ? '<span class="pop-tag pop-tag-found"><i>Found</i></span>' : '';
   const locLabel = totalPts > 1
