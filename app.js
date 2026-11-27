@@ -2,6 +2,7 @@ const $ = s => document.querySelector(s);
 const REPO_URL = 'https://github.com/adamstark1/Vice-Companion';
 const FOUND_COLOR = '#25f49a';
 const FOUND_KEY = 'vc_found';
+const USER_CACHE_KEY = 'vc_user';
 const VALID_ID_RE = /^[a-z0-9-]{1,64}$/;
 const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyCov1sMWSgNxd2fFNo_EydOk-9wrPKhvow',
@@ -44,7 +45,7 @@ const PAGE_SIZE = 10;
 const data = {}, layers = {}, markers = {}, overviewMarkers = {};
 const state = { letter: '', q: '', limit: PAGE_SIZE };
 let map, focusLayer, revealObserver;
-let fbAuth = null, fbDb = null, currentUser = null, authMsg = '';
+let fbAuth = null, fbDb = null, currentUser = loadCachedUser(), authMsg = '';
 const foundSet = loadFoundSet();
 
 const AVATARS = {
@@ -91,6 +92,29 @@ const pendingAvatars = {};
 try {
   Object.assign(AVATARS, JSON.parse(localStorage.getItem('vc_avatars') || '{}'));
 } catch {}
+
+function loadCachedUser() {
+  try {
+    const u = JSON.parse(localStorage.getItem(USER_CACHE_KEY) || 'null');
+    return u && typeof u.uid === 'string' ? u : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveCachedUser(user) {
+  try {
+    if (user && user.uid) {
+      localStorage.setItem(USER_CACHE_KEY, JSON.stringify({
+        uid: user.uid,
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || ''
+      }));
+    } else {
+      localStorage.removeItem(USER_CACHE_KEY);
+    }
+  } catch {}
+}
 
 function sanitizeIds(arr) {
   if (!Array.isArray(arr)) return [];
@@ -183,6 +207,7 @@ function initFirebase() {
     fbDb.enablePersistence({ synchronizeTabs: true }).catch(() => {});
     fbAuth.onAuthStateChanged(async user => {
       currentUser = user || null;
+      saveCachedUser(currentUser);
       authMsg = '';
       updateNavProfile();
       if (currentUser && fbDb) {
@@ -224,6 +249,7 @@ async function signInWithGoogle() {
 async function signOutUser() {
   if (!fbAuth) return;
   try {
+    saveCachedUser(null);
     await fbAuth.signOut();
   } catch {}
 }
@@ -273,6 +299,8 @@ function initMobileMenu() {
   });
 }
 initMobileMenu();
+updateNavProfile();
+route();
 initFirebase();
 
 const failed = [];
@@ -484,7 +512,7 @@ function renderProfile() {
           ${currentUser.photoURL ? `<img class="prof-av" src="${currentUser.photoURL}" alt="" referrerpolicy="no-referrer">` : `<div class="prof-av">${(currentUser.displayName || 'U')[0]}</div>`}
           <div class="prof-info">
             <h3>${currentUser.displayName || 'Leonida Explorer'}</h3>
-            <p>ID: ${currentUser.uid}</p>
+            <p class="prof-uid">ID: ${currentUser.uid}</p>
           </div>
         </div>
         <button class="btn" id="auth-out-btn" type="button">Sign Out</button>
@@ -549,7 +577,9 @@ function loadTweets() {
 }
 
 function showThread(id) {
-  const i = data['easter-eggs'].find(x => x.id === id);
+  const list = data['easter-eggs'];
+  if (!list) return;
+  const i = list.find(x => x.id === id);
   $('#ee-list').hidden = !!i;
   $('#ee-thread').hidden = !i;
   if (!i) return;
@@ -650,7 +680,7 @@ function route() {
   if (page === 'home') initScrollAnimations();
   if (page === 'easter-eggs') showThread(arg);
   if (page === 'profile') renderProfile();
-  if (page === 'map') initMap(arg); else scrollTo(0, 0);
+  if (page === 'map') { if (data['easter-eggs']) initMap(arg); } else scrollTo(0, 0);
 }
 
 function setDefaultMapView() {
