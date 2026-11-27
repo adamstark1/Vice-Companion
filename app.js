@@ -42,8 +42,9 @@ const MAP_RANGES = {
   6: [[34, 34], [167, 206]]
 };
 const PAGE_SIZE = 10;
+const PROF_INIT_SIZE = 3;
 const data = {}, layers = {}, markers = {}, overviewMarkers = {};
-const state = { letter: '', q: '', limit: PAGE_SIZE };
+const state = { letter: '', q: '', limit: PAGE_SIZE, profLimit: PROF_INIT_SIZE };
 let map, focusLayer, revealObserver;
 let fbAuth = null, fbDb = null, currentUser = loadCachedUser(), authMsg = '';
 const foundSet = loadFoundSet();
@@ -443,8 +444,14 @@ function buildAZ() {
 function renderPosts() {
   const allEE = data['easter-eggs'] || [];
   const list = allEE
-    .filter(i => (!state.letter || first(i.title) === state.letter) &&
-      (!state.q || [i.title, i.description, i.author, ...(i.tags || [])].join(' ').toLowerCase().includes(state.q)))
+    .filter(i => {
+      const isFound = foundSet.has(i.id);
+      const matchLetter = !state.letter || first(i.title) === state.letter;
+      const matchQ = !state.q || (state.q === 'found'
+        ? isFound
+        : [i.title, i.description, i.author, ...(i.tags || []), ...(isFound ? ['found'] : [])].join(' ').toLowerCase().includes(state.q));
+      return matchLetter && matchQ;
+    })
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   const visible = list.slice(0, state.limit);
   const foundTotal = allEE.filter(i => foundSet.has(i.id)).length;
@@ -500,7 +507,10 @@ function renderProfile() {
   const box = $('#profile-box');
   if (!box) return;
   const allEE = data['easter-eggs'] || [];
-  const foundItems = allEE.filter(i => foundSet.has(i.id));
+  const foundItems = allEE
+    .filter(i => foundSet.has(i.id))
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const visibleFound = foundItems.slice(0, state.profLimit);
   const totalEE = allEE.length;
   const foundCount = foundItems.length;
   const pct = totalEE ? Math.round((foundCount / totalEE) * 100) : 0;
@@ -551,13 +561,20 @@ function renderProfile() {
       <h2>Found Easter Eggs (${foundCount})</h2>
       <a href="#/easter-eggs">All Easter Eggs →</a>
     </div>
-    ${foundItems.length ? `<div class="posts recent-posts">${foundItems.map(i => post(i)).join('')}</div>` : '<p class="empty">You have not marked any Easter Eggs as found yet. Open any Easter Egg and check "Mark as Found" to track your progress.</p>'}
+    ${visibleFound.length ? `<div class="posts recent-posts">${visibleFound.map(i => post(i)).join('')}</div>${foundItems.length > visibleFound.length ? `<div class="more-wrap"><button class="btn more-btn" id="more-prof" type="button">Show more</button></div>` : ''}` : '<p class="empty">You have not marked any Easter Eggs as found yet. Open any Easter Egg and check "Mark as Found" to track your progress.</p>'}
   `;
 
   const inBtn = $('#auth-in-btn');
   if (inBtn) inBtn.onclick = signInWithGoogle;
   const outBtn = $('#auth-out-btn');
   if (outBtn) outBtn.onclick = signOutUser;
+  const moreProf = $('#more-prof');
+  if (moreProf) {
+    moreProf.onclick = () => {
+      state.profLimit += PAGE_SIZE;
+      renderProfile();
+    };
+  }
 }
 
 function embed(u) {
@@ -597,7 +614,7 @@ function showThread(id) {
     <div class="acts-row">
       <label class="btn found-toggle ${isFound ? 'on' : ''}" id="found-label">
         <input type="checkbox" id="found-cb" ${isFound ? 'checked' : ''}>
-        <span class="found-box">✓</span>
+        <span class="found-box"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.3 6.2L5 8.9 9.8 3.3"/></svg></span>
         <span class="found-text" id="found-text">${isFound ? 'Found' : 'Mark as Found'}</span>
       </label>
       ${i.source ? `<a class="btn" href="${i.source}" target="_blank" rel="noopener noreferrer">Original post ↗</a>` : ''}
@@ -681,7 +698,10 @@ function route() {
   updateSubmitLink(page);
   if (page === 'home') initScrollAnimations();
   if (page === 'easter-eggs') showThread(arg);
-  if (page === 'profile') renderProfile();
+  if (page === 'profile') {
+    state.profLimit = PROF_INIT_SIZE;
+    renderProfile();
+  }
   if (page === 'map') { if (data['easter-eggs']) initMap(arg); } else scrollTo(0, 0);
 }
 
