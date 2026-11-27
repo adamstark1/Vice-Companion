@@ -1302,11 +1302,11 @@
   {
     "id": "cherry-popper-ice-cream-truck",
     "title": "Cherry Popper Ice Cream Truck & Secret T-Shirt",
-    "description": "Visit the Cherry Popper Ice Cream Company shop in Grassrivers during the daytime to steal the classic Vice City ice cream van and break into the back for an exclusive Cherry Popper T-shirt.",
+    "description": "Visit the Cherry Popper Ice Cream Company shop in Grassrivers during the daytime to steal the classic Vice City ice cream van and an exclusive T-shirt.",
     "content": [
       "Along the highway corridor in eastern Grassrivers, Mariana County—at the intersection of Sweetbay Road and Seabell Avenue just northwest of Hamlet—stands the flagship parlor of The Cherry Popper Ice Cream Company, topped with a giant white ice-cream-scoop dome and cherry roof. Parked right in the front lot during daytime hours is the Brute Cherry Popper Boxville, a direct throwback to the infamous Cherry Popper asset and Mr. Whoopee ice cream truck from 2002's Grand Theft Auto: Vice City.",
       "Before driving off, walk behind the parked delivery van and hold Triangle (PS5) / Y (Xbox) on the locked rear doors to kick them open. Stepping inside the back cargo compartment and interacting with the red cooler box on the floor (Square / X to Take) immediately unlocks the exclusive White & Red Cherry Popper T-Shirt in your wardrobe under Tops > T-Shirts > Merch.",
-      "In addition to the secret clothing reward, the Brute Cherry Popper Boxville itself counts as one of Leonida's collectible Standout Vehicles (Topper 1/6) and retains the suggestive twin-scoop-and-cone roof topper from the original Vice City. Although the van spawns locked and alarmed—requiring you to smash the driver's window and hotwire the ignition—it has no pre-installed tracker, allowing you to drive it straight to Moses' shop to register and store it permanently."
+      "In addition to the secret clothing reward, the Brute Cherry Popper Boxville itself counts as one of Leonida's collectible Standout Vehicles (Topper 1/6) and retains the suggestive twin-scoop-and-cone roof topper from the original Vice City. Although the van spawns locked and alarmed—requiring you to smash the driver's window and hotwire the ignition—it has no pre-installed tracker, allowing you to drive it straight to a mod shop to register and store it permanently."
     ],
     "author": "DETONATEDcom",
     "date": "2026-11-26",
@@ -1321,8 +1321,33 @@
     "embed": "https://x.com/DETONATEDcom/status/2126072809726046325",
     "addedBy": "AdamStark",
     "pos": [
-      -3996,
-      -2424
+      -4063,
+      -2531
+    ]
+  },
+  {
+    "id": "domestobot-secret-stash",
+    "title": "Domestobot & Secret Stash (Vice City Stories)",
+    "description": "Break into the Levelheaded Machining Co. warehouse on NW 17th Street in Salton to meet the 1984 Domestobot from Vice City Stories and flip it off for $1,400 and a luxury watch.",
+    "content": [
+      "Along NW 17th Street in the Salton district of western Vice City—just north of the highway overpass—stands an industrial block housing Logan's Machine Shop (marked by a bright yellow sign) and the adjacent Levelheaded Machining Co. warehouse. Climb the chain-link fence to the right of Logan's Machine Shop next to the shutter spray-painted \"Keep Clear,\" clamber onto the dumpster to reach the roof, cross over to the metal stairs leading down into the rear alley, and slip through the white doors into the back storeroom (or use Focus Mode to spot and kick open the locked door).",
+      "Sitting among the dusty cardboard boxes in the cluttered back storeroom—missing one of its claws, with a Maibatsu Electronics badge on its base and a schematic poster on the wall—is the antique Domestobot, the iconic 1980s household robot from the 2006 PSP classic Grand Theft Auto: Vice City Stories (featured in Armando Mendez's 1984 mission \"Domo Arigato Domestoboto\"). Locking onto the robot triggers voiced dialogue prompts where it introduces itself (\"I am Domestobot. Domestobot lives to serve\"), recites its RoboCop-inspired four directives (\"Directive one: serve the owner's house... Directive four: classified\"), and asks in a hurt tone, \"Domestobot is trash?\" when called an antique.",
+      "Once you exhaust its dialogue options, stay locked onto the Domestobot and use the gesture/emote wheel to flip it the middle finger. The robot recognizes the rude gesture as a secret override—announcing \"User-defined hand signal confirmed. Hidden compartment activated\" before entering power-saving mode—and pops open its chest panel to reward you with $1,400 in Marked Bills ($1,000 + $400) and the collectible Crowex Submerge luxury watch."
+    ],
+    "author": "Kiminino72",
+    "date": "2026-11-26",
+    "tags": [
+      "Vice City",
+      "Reference",
+      "Money",
+      "Clothing"
+    ],
+    "source": "https://x.com/Kiminino72/status/2125984955989651723",
+    "embed": "https://x.com/Kiminino72/status/2125984955989651723",
+    "addedBy": "AdamStark",
+    "pos": [
+      -1792,
+      -52
     ]
   }
 ]

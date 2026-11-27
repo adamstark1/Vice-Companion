@@ -88,7 +88,8 @@ const AVATARS = {
   pi5cesmoon: 'https://pbs.twimg.com/profile_images/2125695690781143040/uOsn9xcK_normal.jpg',
   cranefomo: 'https://pbs.twimg.com/profile_images/2066898165609971712/8U75tZ8r_normal.jpg',
   moontv8125: 'https://pbs.twimg.com/profile_images/2038022671972384768/xd9NW0bS_normal.jpg',
-  kotaku: 'https://pbs.twimg.com/profile_images/1145899315006717952/ozxwJgmx_normal.png'
+  kotaku: 'https://pbs.twimg.com/profile_images/1145899315006717952/ozxwJgmx_normal.png',
+  kiminino72: 'https://pbs.twimg.com/profile_images/1931129817501446144/QrhSlN8O_normal.jpg'
 };
 const pendingAvatars = {};
 
@@ -756,7 +757,7 @@ function buildPinIcon(k, id, stepNum = 0) {
 function buildPinPopup(k, i, pt, idx, totalPts, isOverview = false) {
   const c = CATS[k];
   const link = k === 'easter-eggs' ? `#/${k}/${i.id}` : `#/${k}`;
-  const isFound = k === 'easter-eggs' && foundSet.has(i.id);
+  const isFound = k === 'easter-eggs' && foundSet.has(id);
   const accent = isFound ? FOUND_COLOR : c.color;
   const foundTag = isFound ? '<span class="pop-tag pop-tag-found"><i>Found</i></span>' : '';
   const locLabel = totalPts > 1
