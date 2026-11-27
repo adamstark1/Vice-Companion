@@ -182,15 +182,14 @@
       "Vice City",
       "Reference",
       "Money",
-      "Clothing",
-      "Weapon"
+      "Clothing"
     ],
     "source": "https://x.com/xGarbett/status/2123763394687697013",
     "embed": "https://x.com/xGarbett/status/2123763394687697013",
     "addedBy": "AdamStark",
     "pos": [
-      -665,
-      820
+      -649, 
+      671
     ]
   },
   {
@@ -378,8 +377,8 @@
     "embed": "https://x.com/xGarbett/status/2124286214568075630",
     "addedBy": "AdamStark",
     "pos": [
-      -6487,
-      3538
+      -6332, 
+      4372
     ]
   },
   {
@@ -614,8 +613,8 @@
     "embed": "https://x.com/DogManX31/status/2123317230544769175",
     "addedBy": "AdamStark",
     "pos": [
-      -2617,
-      -3534
+      -2694,
+      -3599
     ]
   },
   {
@@ -783,8 +782,8 @@
     "embed": "https://x.com/Wilh_Flashito/status/2123482490094682208",
     "addedBy": "AdamStark",
     "pos": [
-      139,
-      4266
+      -2351,
+      -5518
     ]
   },
   {
@@ -832,8 +831,8 @@
     "embed": "https://x.com/Pilasto1/status/2123263796437541324",
     "addedBy": "AdamStark",
     "pos": [
-      -2345,
-      -5540
+      -2344,
+      -5551
     ]
   },
   {
@@ -881,8 +880,8 @@
     "embed": "https://x.com/CultureCrave/status/2123471210038395102",
     "addedBy": "AdamStark",
     "pos": [
-      -4650,
-      4350
+      -3988,
+      4043
     ]
   },
   {
@@ -904,8 +903,8 @@
     "embed": "https://x.com/DiscussingFilm/status/2123231645285126622",
     "addedBy": "AdamStark",
     "pos": [
-      -561,
-      123
+      -81,
+      272
     ]
   },
   {
@@ -927,8 +926,8 @@
     "embed": "https://x.com/DiscussingFilm/status/2123840468672815168",
     "addedBy": "AdamStark",
     "pos": [
-      -1047,
-      908
+      -1055,
+      903
     ]
   },
   {
@@ -1226,6 +1225,78 @@
     "pos": [
       -6356,
       2777
+    ]
+  },
+  {
+    "id": "teenage-mutant-ninja-turtles",
+    "title": "Teenage Mutant Ninja Turtles Sewer Drain",
+    "description": "Visit the storm drain canal south of Lake Tallaloko at night to find glowing green ooze, four baby turtles, and a rat gathered around two open pizza boxes.",
+    "content": [
+      "At the southeastern edge of Lake Tallaloko in East Lummox County—just north of Millport and directly below the M7 Weed Grow illegal operation—a concrete storm drain canal and pumping station hides a direct tribute to the Teenage Mutant Ninja Turtles.",
+      "Visiting the drainage canal after dark (around 10:00 PM in-game time) and heading down the concrete embankment reveals glowing radioactive green ooze seeping from a crack in the sewer wall beside the service stairs. Huddled on the concrete bank right next to the green water are four baby turtles (Leonardo, Donatello, Raphael, and Michelangelo) and a brown rat (Master Splinter) gathered around two open pizza boxes. Approach slowly or observe through binoculars, as sprinting up to the bank will spook the rat into fleeing up the embankment.",
+      "While visiting the sewer station, pull out your phone and scan the glowing green slime beneath the stairs with the WAiNK app to log the \"Intriguing Substance\" Curiosity required for 100% completion, then check underneath the blue chair beside the upper maintenance shed to collect The Ratster (Maroon) comic card."
+    ],
+    "author": "MoonTV8125",
+    "date": "2026-11-24",
+    "tags": [
+      "Lummox County",
+      "Reference"
+    ],
+    "source": "https://x.com/MoonTV8125/status/2125278748815581493",
+    "embed": "https://x.com/MoonTV8125/status/2125278748815581493",
+    "addedBy": "AdamStark",
+    "pos": [
+      -1304,
+      6926
+    ]
+  },
+  {
+    "id": "sam-houser-little-sam-cameo",
+    "title": "Sam Houser \"Little Sam\" Janitor Cameo",
+    "description": "During the Chapter 3 mission \"Boobie Time,\" a silent bearded janitor in a Rockstar Games T-shirt named \"Little Sam\" sweeps the floor at Big Mike's club.",
+    "content": [
+      "Midway through Chapter 3 in the story mission \"Boobie Time,\" Jason Duval acts as a temporary driver for Jack of Hearts club owner Boobie Ike, chauffeuring him around Vice City to collect payments before stopping at an unfinished waterfront club on Westbrook Drive in Salton being renovated by Boobie's brother, Big Mike.",
+      "Inside the club, the camera lingers on a short, older janitor with a receding gray buzzcut and full gray beard sweeping the floor in a white T-shirt bearing the Rockstar Games (R★) logo—an unmistakable visual match for Rockstar Games co-founder and president Sam Houser. When Boobie cracks a joke calling him \"Santa's lil' helper,\" the janitor merely growls without speaking a word, prompting Big Mike to reply, \"That's Little Sam, he don't say much. Don't worry 'bout him.\"",
+      "The exchange is both a meta-joke about Houser's famously private, media-shy persona and a 25-year callback to his classic \"Sam\" Ammu-Nation clerk cameo in Grand Theft Auto III and Vice City. In the official GTA VI credits, Little Sam is credited simply as \"Himself,\" and when asked by Kotaku if the janitor was indeed the studio president, Rockstar North co-studio head Rob Nelson laughed and replied, \"I can't confirm or deny it... [He was in GTA 3,] so I wouldn't be surprised if that's him.\""
+    ],
+    "author": "Kotaku",
+    "date": "2026-11-19",
+    "tags": [
+      "Vice City",
+      "Reference"
+    ],
+    "source": "https://x.com/Kotaku/status/2123477895687385096",
+    "embed": "https://x.com/Kotaku/status/2123477895687385096",
+    "addedBy": "AdamStark",
+    "pos": [
+      -1504,
+      155
+    ]
+  },
+  {
+    "id": "tiny-arthur-morgan-chihuahua",
+    "title": "Tiny Arthur Morgan Riding a Chihuahua",
+    "description": "Head to the boardwalk of Frontier Adventure Golf on Valentine Drive in Waning Sands to meet and pet a Chihuahua carrying a miniature Arthur Morgan cowboy doll on its back.",
+    "content": [
+      "Along Valentine Drive in southern Waning Sands, Leonard County—a street name that itself nods to the frontier town of Valentine in Red Dead Redemption 2—sits Frontier Adventure Golf, a playable 18-hole Wild West-themed miniature golf course located right next to the Hot Skidz go-kart track and Evergreen Mall.",
+      "You don't even have to pay for a round of mini-golf to see the Easter Egg: simply hop over the entrance booth onto the shaded wooden boardwalk leading to Hole 1 (\"High Noon\"). Wandering the patio is a friendly, interactable dog named the \"Ride 'Em Chihuahua\" with a miniature cowboy doll strapped to a tiny saddle on its back.",
+      "Zooming in on the doll reveals Arthur Morgan's iconic default Gunslinger outfit from Red Dead Redemption 2—complete with his worn brown cowboy hat, blue striped shirt, black neckerchief, and a tiny revolver in hand. Locking onto the Ride 'Em Chihuahua lets you Study it (adding \"A tiny chihuahua ridden by an even tinier cowboy\" to Progress > Animals > Other), Praise or Scold it, and Pet it for a Focus stat boost."
+    ],
+    "author": "xGarbett",
+    "date": "2026-11-21",
+    "tags": [
+      "Waning Sands",
+      "Red Dead",
+      "RDR2",
+      "Reference",
+      "Boost"
+    ],
+    "source": "https://x.com/xGarbett/status/2124091529283183045",
+    "embed": "https://x.com/xGarbett/status/2124091529283183045",
+    "addedBy": "AdamStark",
+    "pos": [
+      85,
+      4115
     ]
   }
 ]

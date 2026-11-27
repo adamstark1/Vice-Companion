@@ -85,7 +85,9 @@ const AVATARS = {
   gta6newshub: 'https://pbs.twimg.com/profile_images/2069761723142123520/Gr9qZgEw_normal.jpg',
   caspahz: 'https://pbs.twimg.com/profile_images/2124135317158707200/A3OE9M38_normal.jpg',
   pi5cesmoon: 'https://pbs.twimg.com/profile_images/2125695690781143040/uOsn9xcK_normal.jpg',
-  cranefomo: 'https://pbs.twimg.com/profile_images/2066898165609971712/8U75tZ8r_normal.jpg'
+  cranefomo: 'https://pbs.twimg.com/profile_images/2066898165609971712/8U75tZ8r_normal.jpg',
+  moontv8125: 'https://pbs.twimg.com/profile_images/2038022671972384768/xd9NW0bS_normal.jpg',
+  kotaku: 'https://pbs.twimg.com/profile_images/1145899315006717952/ozxwJgmx_normal.png'
 };
 const pendingAvatars = {};
 
